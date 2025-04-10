@@ -1,0 +1,45 @@
+# config.yaml
+
+# --- API Configuration ---
+# It's STRONGLY recommended to set GOOGLE_API_KEY as an environment variable in a .env file.
+# This value is only used as a fallback if the environment variable is not set.
+# google_api_key: "YOUR_GOOGLE_API_KEY_IF_NOT_USING_ENV_VAR"
+
+# --- Rate Limiting (calls per period) ---
+# Example: 5 calls per 60 seconds (1 minute) - Check your Google API quotas
+rate_limit_calls: 5
+rate_limit_period: 60
+
+# --- LLM Configuration ---
+# See https://ai.google.dev/models/gemini for available models
+llm_model_name: "models/gemini-1.5-flash" # Or "models/gemini-pro", "models/gemini-1.5-pro-latest"
+
+# --- Output Configuration ---
+output_folder: "analysis_results" # Folder where .md results will be saved
+max_workers: 4 # Maximum number of parallel threads for processing sets
+
+# --- Prompt File Paths ---
+# Define specific prompts for each video type and comparison
+early_take_prompt_file: "prompts/early_take_prompt.txt"
+retrospective_prompt_file: "prompts/retrospective_prompt.txt"
+compare_prompt_file: "prompts/compare_takeaways_prompt.txt"
+
+# --- YouTube Video Sets to Process ---
+video_sets:
+  - set_name: "LlamaIndex Introduction" # Unique name for this pair/set
+    early_take:
+      url: "PASTE_EARLY_TAKE_YOUTUBE_URL_HERE"
+      # Optional: Override prompt for this specific video
+      # prompt_file: "prompts/custom_early_prompt.txt"
+    retrospective:
+      url: "PASTE_RETROSPECTIVE_YOUTUBE_URL_HERE"
+      # Optional: Override prompt
+      # prompt_file: "prompts/custom_retro_prompt.txt"
+
+  # - set_name: "Another Example Set"
+  #   early_take:
+  #     url: "URL_FOR_OTHER_EARLY_VIDEO"
+  #   retrospective:
+  #     url: "URL_FOR_OTHER_RETRO_VIDEO"
+
+  # Add more sets as needed following the structure above

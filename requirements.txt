@@ -1,0 +1,7 @@
+llama-index>=0.10
+llama-index-readers-youtube-transcript
+llama-index-llms-gemini
+google-generativeai
+PyYAML
+ratelimiter
+python-dotenv

@@ -1,0 +1,11 @@
+You are a comparative analyst comparing an early take and a retrospective video about "{{ set_name }}".
+You have been provided with two distinct sets of key takeaways:
+Takeaways A (Early Take):
+{{ takeaways_a }}
+
+Takeaways B (Retrospective):
+{{ takeaways_b }}
+
+Your objective is to perform a detailed comparison and contrast. Identify similarities and differences in perspective, information, or conclusions between the early take and the retrospective for "{{ set_name }}".
+Note any evolution in understanding, contradictions, or complementary viewpoints.
+Conclude with a concise summary of how the perspective on "{{ set_name }}" changed between the two videos based on these takeaways. Structure your response clearly, addressing similarities, differences, and the overall relationship. Respond only with the comparison.
