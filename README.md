@@ -1,7 +1,8 @@
 # YT-PUNDIT-ANALYZER
 
 > YouTube Video Comparison Tool for Analyzing Pundit Predictions
-> Vibe-coded 💻✨🎶 (Code: gemini-2.5-pro, Prompts: claude-3.7-sonnet)
+
+> (_vibe-coded_ 💻✨🎶 – code: gemini-2.5-pro, prompts: claude-3.7-sonnet)
 
 ## 🔍 What is this?
 
@@ -75,7 +76,7 @@ max_workers: 4                     # Parallel processing threads
 llm_model_name: "gemini-2.5-pro-exp-03-25"
 ```
 
-For detailed setup instructions, see the [Complete Setup Guide](#complete-setup-guide) below.
+For detailed setup instructions, see the **Complete Setup Guide** below.
 
 ## 📋 Complete Setup Guide
 
