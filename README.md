@@ -71,7 +71,7 @@ video_sets:
 # Optional settings (defaults work well)
 output_folder: "analysis_results"  # Where results are saved
 max_workers: 4                     # Parallel processing threads
-llm_model_name: "gemini-2.5-pro-exp-03-25"
+llm_model_name: "models/gemini-2.5-pro-exp-03-25"
 ```
 
 For detailed setup instructions, see the **Complete Setup Guide** below.

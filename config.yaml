@@ -13,7 +13,7 @@ rate_limit_period: 60
 # --- LLM Configuration ---
 # See https://ai.google.dev/models/gemini for available models
 # llm_model_name: "models/gemini-2.0-flash" # Use for test runs
-llm_model_name: "gemini-2.5-pro-exp-03-25" # Use for actual runs
+llm_model_name: "models/gemini-2.5-pro-exp-03-25" # Use for actual runs
 
 # --- Output Configuration ---
 output_folder: "analysis_results" # Folder where .md results will be saved
