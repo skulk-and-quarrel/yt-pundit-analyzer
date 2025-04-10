@@ -92,13 +92,13 @@ def run_pundit_analyzer(config_path="config.yaml", cli_output_folder=None):
             # Submit tasks
             for video_set in video_sets:
                 # Basic validation of the set structure
-                set_name = video_set.get('set_name')
-                if not set_name or \
+                subject = video_set.get('subject')
+                if not subject or \
                    not isinstance(video_set.get('early_take'), dict) or \
                    not isinstance(video_set.get('retrospective'), dict) or \
                    not video_set['early_take'].get('url') or \
                    not video_set['retrospective'].get('url'):
-                    logging.warning(f"Skipping invalid video set structure in config: Set name '{set_name or 'MISSING'}'. Check URLs and structure.")
+                    logging.warning(f"Skipping invalid video set structure in config: Set name '{subject or 'MISSING'}'. Check URLs and structure.")
                     continue
 
                 future = executor.submit(
@@ -110,7 +110,7 @@ def run_pundit_analyzer(config_path="config.yaml", cli_output_folder=None):
                     rate_limiter,      # Shared rate limiter instance
                     output_folder      # Output folder path
                 )
-                futures_map[future] = set_name # Map future to set name for context
+                futures_map[future] = subject # Map future to set name for context
 
             if not futures_map:
                 logging.warning("No valid video sets were submitted for processing.")
@@ -120,15 +120,15 @@ def run_pundit_analyzer(config_path="config.yaml", cli_output_folder=None):
             processed_count = 0
             total_tasks = len(futures_map)
             for future in concurrent.futures.as_completed(futures_map):
-                set_name_completed = futures_map[future]
+                subject_completed = futures_map[future]
                 processed_count += 1
-                logging.info(f"Processing complete for set {processed_count}/{total_tasks}: '{set_name_completed}'")
+                logging.info(f"Processing complete for set {processed_count}/{total_tasks}: '{subject_completed}'")
                 try:
                     result_data = future.result() # Get summary dict from process_video_set
                     results_summary.append(result_data)
                     # Print summary status (details are in files)
                     print("\n" + "="*50)
-                    print(f"Summary for Set: '{result_data.get('set_name', 'N/A')}'")
+                    print(f"Summary for Set: '{result_data.get('subject', 'N/A')}'")
                     print("-"*50)
                     print(f"Early Take URL:      {result_data.get('early_take_url', 'N/A')}")
                     print(f"Early Take Status:   {result_data.get('early_take_status', 'N/A')}")
@@ -138,10 +138,10 @@ def run_pundit_analyzer(config_path="config.yaml", cli_output_folder=None):
                     print(f"(Detailed results saved in folder: '{output_folder}')")
                     print("="*50 + "\n")
                 except Exception as exc:
-                    logging.error(f"Set '{set_name_completed}' generated an exception during processing: {exc}", exc_info=True)
+                    logging.error(f"Set '{subject_completed}' generated an exception during processing: {exc}", exc_info=True)
                     # Store error information in the summary
                     results_summary.append({
-                        "set_name": set_name_completed,
+                        "subject": subject_completed,
                         "error": f"Processing failed: {exc}"
                     })
 

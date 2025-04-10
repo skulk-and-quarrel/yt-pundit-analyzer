@@ -121,10 +121,10 @@ def sanitize_filename(name: str) -> str:
     # Limit length if necessary
     return name[:100] # Limit filename length for compatibility
 
-def generate_output_filename(set_name: str, analysis_type: str) -> str:
+def generate_output_filename(subject: str, analysis_type: str) -> str:
     """Generates the output filename based on the specified format."""
     # analysis_type should be "Early_take", "Retrospective", or "Analysis"
     date_str = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M")
-    sanitized_set_name = sanitize_filename(set_name)
+    sanitized_subject = sanitize_filename(subject)
     sanitized_type = sanitize_filename(analysis_type)
-    return f"{date_str}_{sanitized_set_name}_{sanitized_type}.md"
+    return f"{date_str}_{sanitized_subject}_{sanitized_type}.md"

@@ -1,84 +1,189 @@
-# YT-PUNDIT-ANALYZER: YouTube Video Comparison Tool for Analyzing Pundits
+# YT-PUNDIT-ANALYZER
 
+> YouTube Video Comparison Tool for Analyzing Pundit Predictions
 > Vibe-coded 💻✨🎶 (Code: gemini-2.5-pro, Prompts: claude-3.7-sonnet)
 
-`yt-pundit-analyzer` is a Python package that compares pair(s) of YouTube videos: a video with speculations/takes about the future, and an another video with the actual outcomes. Its purpose is to judge and evaluate the accuracy of pundit commentary. 
+## 🔍 What is this?
 
-It leverages LlamaIndex and Google's Gemini LLM (since Gemini 2.5 Pro is just fantastic).
+`yt-pundit-analyzer` helps you evaluate how accurate pundits, commentators, or experts were in their predictions. It compares:
 
-Workflow:
-- Fetch transcripts from the pair of videos,
-- Extract key takeaways (with timestamps and quotes),
-- Generate a comparison between pairs of videos. 
+1. A video containing predictions/opinions about future events
+2. A later video showing what actually happened
 
-_The process is parallelized for efficiency and includes rate limiting to respect API usage quotas._
+Using AI, it extracts key points from both videos and generates an objective comparison of the prediction accuracy.
 
-[TODO: Update this to make it more user friendly (put the setup/configuration in a separate file for easy readability), and give more of the context]
+*Example use case: I recently used this tool to analyze Lords of Limited podcast episodes about Magic: The Gathering, comparing their early format predictions with their later assessments. [LINK TO BE ADDED SOON]*
 
-## Features
-
-- Fetches transcripts for specified YouTube videos using `llama-index-readers-youtube-transcript`.
-- Uses Google's Gemini LLM via `llama-index-llms-gemini` for:
-    - Extracting key takeaways from each video's transcript.
-    - Comparing the takeaways of paired videos.
-- Processes multiple video pairs in parallel using `concurrent.futures.ThreadPoolExecutor`.
-- Implements robust API rate limiting using the `ratelimiter` library to avoid exceeding quotas (e.g., Google API limits).
-- Configurable via a `config.yaml` file for API keys (environment variables recommended), rate limits, LLM model, and video pairs.
-- Customizable LLM prompts stored in external `.txt` files.
-
-## Setup
-
-1. **Prerequisites:** Python 3.8+ recommended.
-2. **Clone Repository:**bash git clone https://github.com/skulk-and-quarrel/yt-pundit-analyzer
-3. **Create Virtual Environment (Recommended):**
-    
-    ```bash
-    python -m venv venv
-    # On Linux/macOS:
-    source venv/bin/activate
-    # On Windows:
-    .\venv\Scripts\activate
-    ```
-
-4. **Install Dependencies:**
+## ⚡ Quick Start
 
 ```bash
+# Install
+git clone https://github.com/skulk-and-quarrel/yt-pundit-analyzer
+cd yt-pundit-analyzer
+pip install -r requirements.txt
+
+# Set your Google API key (see Configuration section)
+cp .env.example .env
+# Edit .env with your API key
+
+# Run with default config
+python main.py
+```
+
+## 🛠️ Main Function
+
+The package performs three primary tasks:
+
+1. **Fetch transcripts** from YouTube videos using `llama-index-readers-youtube-transcript`
+2. **Extract key takeaways** from each video (with timestamps and quotes)
+3. **Generate a comparison** between the paired videos
+
+This entire process is:
+- Parallelized for efficiency
+- Rate-limited to respect API quotas
+- Powered by Google's Gemini 2.5 Pro LLM
+
+## ⚙️ Configuration
+
+The only required configuration is your **Google API key**. 
+
+Edit the `config.yaml` file to customize your analysis:
+
+```yaml
+# Prompts to use
+early_take_prompt_file: "prompts/lol_early_take_prompt.txt"
+retrospective_prompt_file: "prompts/lol_retrospective_prompt.txt"
+compare_prompt_file: "prompts/lol_compare_takeaways_prompt.txt"
+
+# Video sets to analyze
+video_sets:
+  - subject: "Example Set"
+    early_take:
+      url: "https://www.youtube.com/watch?v=early_prediction_video"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=actual_outcome_video"
+  
+  - subject: "Another Example"
+    early_take:
+      url: "https://www.youtube.com/watch?v=another_prediction"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=another_outcome"
+
+# Optional settings (defaults work well)
+output_folder: "analysis_results"  # Where results are saved
+max_workers: 4                     # Parallel processing threads
+llm_model_name: "gemini-2.5-pro-exp-03-25"
+```
+
+For detailed setup instructions, see the [Complete Setup Guide](#complete-setup-guide) below.
+
+## 📋 Complete Setup Guide
+
+<details>
+<summary>Click to expand detailed setup instructions</summary>
+
+### Prerequisites
+
+- Python 3.8 or higher
+- A Google API key with access to Gemini models
+
+### Step 1: Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/skulk-and-quarrel/yt-pundit-analyzer
+cd yt-pundit-analyzer
+
+# Set up a virtual environment (recommended)
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-## Configuration
+### Step 2: API Key Configuration
 
-1. **API Key (Required):**
-    - **Recommended Method (Environment Variable):**
-        - Copy the `.env.example` file to `.env`: `cp.env.example.env` (or `copy.env.example.env` on Windows).
-        - Edit the `.env` file and replace `"YOUR_GOOGLE_API_KEY_HERE"` with your actual Google API key obtained from Google AI Studio or Google Cloud Console.
-        - **Important:** Add `.env` to your `.gitignore` file to prevent accidentally committing your key.
-    - **Alternative (Less Secure - Config File):** If you cannot use environment variables, you can uncomment the `google_api_key` line in `config.yaml` and paste your key there. This is **not recommended** for security reasons.
-2. **`config.yaml`:**
-    - Open `config.yaml` in a text editor.
-    - **`rate_limit_calls` / `rate_limit_period`:** Adjust the API rate limit (e.g., 5 calls per 60 seconds). Check your Google API quota for appropriate values.
-    - **`llm_model_name`:** Change the Gemini model if desired (e.g., `"models/gemini-pro"`).
-    - **`video_pairs`:** This is the crucial part. Edit the list to include the pairs of YouTube video URLs you want to compare. Each item in the list should be another list containing exactly two valid YouTube video URLs. Add or remove pairs as needed.
-3. **Prompts (Optional):**
-    - To customize the instructions given to the AI, edit the text files located in the `prompts/` directory:
-        - `early_take_prompt.txt` and `retrospective_prompt.txt`: Controls how takeaways are extracted.
-        - `compare_takeaways_prompt.txt`: Controls how the comparison is performed.
+**Option 1: Environment Variables (Recommended)**
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+2. Edit the `.env` file and replace `"YOUR_GOOGLE_API_KEY_HERE"` with your actual key
+3. Add `.env` to your `.gitignore` to prevent accidentally sharing your key
 
-## Running the Script
+**Option 2: Config File (Less Secure)**
+1. Open `config.yaml`
+2. Uncomment the `google_api_key` line
+3. Add your API key directly in the file
 
-Once configured, run the main script from the project's root directory:
+### Step 3: Configure Video Sets
 
+Edit the `config.yaml` file to specify which videos to compare:
+
+```yaml
+video_sets:
+  - subject: "Set Name"  # A descriptive name for this comparison set
+    early_take:
+      url: "https://www.youtube.com/watch?v=prediction_video"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=outcome_video"
+```
+
+Each set needs:
+1. A descriptive `subject` (e.g., "Magic Set Analysis")
+2. An `early_take` URL (the prediction/speculation video)
+3. A `retrospective` URL (the actual outcome video)
+
+### Step 4: Advanced Configuration (Optional)
+
+In `config.yaml`, you can also adjust:
+
+- **Output Settings**:
+  ```yaml
+  output_folder: "analysis_results"  # Where results are saved
+  max_workers: 4                     # Parallel processing threads
+  ```
+
+- **API Rate Limiting**:
+  ```yaml
+  rate_limit_calls: 5    # Number of API calls
+  rate_limit_period: 60  # Time period in seconds
+  ```
+
+- **LLM Model**:
+  ```yaml
+  llm_model_name: "gemini-2.5-pro-exp-03-25"  # Specify Gemini model version
+  ```
+
+- **Custom Prompts**: Configure paths to your prompt files:
+  ```yaml
+  early_take_prompt_file: "prompts/lol_early_take_prompt.txt"
+  retrospective_prompt_file: "prompts/lol_retrospective_prompt.txt"
+  compare_prompt_file: "prompts/lol_compare_takeaways_prompt.txt"
+  ```
+
+### Step 5: Run the Analysis
 
 ```bash
 python main.py
 ```
 
-If you placed your configuration file elsewhere, you can specify its path:
+Or specify a custom config location:
 
 ```bash
 python main.py --config path/to/your_config.yaml
 ```
 
-## Output
+### Output
 
-The script will process each pair of videos defined in `config.yaml`. They will be stored under the directory "output_folder".
+Results will be saved in the `output_folder` directory, with one file per video pair.
+
+</details>
+
+[🔝 Back to top](#yt-pundit-analyzer)

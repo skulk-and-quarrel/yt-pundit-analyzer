@@ -27,43 +27,43 @@ compare_prompt_file: "prompts/lol_compare_takeaways_prompt.txt"
 
 # --- YouTube Video Sets to Process ---
 video_sets:
-  - set_name: "Aetherdrift"
+  - subject: "Aetherdrift"
     early_take:
       url: "https://www.youtube.com/watch?v=t9IsVW7tVxk"
     retrospective:
       url: "https://www.youtube.com/watch?v=bsxvnoUBCnU"
 
-  - set_name: "Duskmourne"
+  - subject: "Duskmourne"
     early_take:
       url: "https://www.youtube.com/watch?v=xIXJT44obzc"
     retrospective:
       url: "https://www.youtube.com/watch?v=KttuUmEaBAc"
 
-  - set_name: "Bloomburrow"
+  - subject: "Bloomburrow"
     early_take:
       url: "https://www.youtube.com/watch?v=4AyJyfUh5q0"
     retrospective:
       url: "https://www.youtube.com/watch?v=MEUlVv3Cr5U"
 
-  - set_name: "Modern Horizons 3"
+  - subject: "Modern Horizons 3"
     early_take:
       url: "https://www.youtube.com/watch?v=0Af5xhA0uWs"
     retrospective:
       url: "https://www.youtube.com/watch?v=gK5Yy3-qQMs"
 
-  - set_name: "Outlaws of Thunder Junction"
+  - subject: "Outlaws of Thunder Junction"
     early_take:
       url: "https://www.youtube.com/watch?v=g8SUweU9oPc"
     retrospective:
       url: "https://www.youtube.com/watch?v=AEGKjMHhIeg"
 
-  - set_name: "Murders at Karlov Manor"
+  - subject: "Murders at Karlov Manor"
     early_take:
       url: "https://www.youtube.com/watch?v=jhsGXPOTbBU"
     retrospective:
       url: "https://www.youtube.com/watch?v=mFajL8fdfhQ"
 
-  # - set_name: "Another Example Set"
+  # - subject: "Another Example Set"
   #   early_take:
   #     url: "URL_FOR_OTHER_EARLY_VIDEO"
   #   retrospective:

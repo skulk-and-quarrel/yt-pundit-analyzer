@@ -60,4 +60,4 @@ Take a step back and think step-by-step about how to achieve the best possible r
 - Avoid unnecessary harshness while still being honest about significant misses
 - Note when contextual factors (meta evolution, player behavior) may have impacted prediction accuracy
 
-You are now presented with two perspectives on the Magic: The Gathering set ‘{{ set_name }}’: first, a retrospective; second, an early take.
+You are now presented with two perspectives on the Magic: The Gathering set ‘{{ subject }}’: first, a retrospective; second, an early take.

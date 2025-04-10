@@ -46,4 +46,4 @@ Take a step back and think step-by-step about how to achieve the best possible r
 - Include ALL significant takes, even if they seem minor
 - Pay special attention to power level assessments, format speed predictions, and archetype viability claims
 
-You are now provided with a video transcript analyzing the Magic: The Gathering set "{{ set_name }}".
+You are now provided with a video transcript analyzing the Magic: The Gathering set "{{ subject }}".

@@ -49,4 +49,4 @@ Take a step back and think step-by-step about how to achieve the best possible r
 - Include ALL significant retrospectives, even if they seem minor
 - Pay special attention to mentions of surprising overperformers, unexpected underperformers, and shifts in the draft meta
 
-You are now provided a video transcript analyzing the Magic: The Gathering set "{{ set_name }}".
+You are now provided a video transcript analyzing the Magic: The Gathering set "{{ subject }}".
