@@ -72,14 +72,17 @@ def create_chat_prompt_template(system_prompt_template_str: str) -> RichPromptTe
 
 {% chat role="user" %}
 {% if transcript %}
-Transcript:
 {{ transcript }}
-{% elif takeaways_a and takeaways_b %}
-Takeaways A (Early Take):
-{{ takeaways_a }}
+{% elif takeaways_retro and takeaways_early %}
+-------------------
+# Retrospective
+-------------------
+{{ takeaways_retro }}
 
-Takeaways B (Retrospective):
-{{ takeaways_b }}
+-------------------
+# Early Takes
+-------------------
+{{ takeaways_early }}
 {% else %}
 Please perform the analysis based on the instructions.
 {% endif %}
@@ -113,15 +116,15 @@ def sanitize_filename(name: str) -> str:
     name = re.sub(r'[<>:"/\\|?*]', '', name)
     # Replace sequences of whitespace with a single underscore
     name = re.sub(r'\s+', '_', name)
-    # Optional: Remove or replace other potentially problematic characters
-    # name = re.sub(r'[.,;!]+', '', name)
+    # Remove or replace other potentially problematic characters
+    name = re.sub(r'[.,;!]+', '', name)
     # Limit length if necessary
     return name[:100] # Limit filename length for compatibility
 
 def generate_output_filename(set_name: str, analysis_type: str) -> str:
     """Generates the output filename based on the specified format."""
     # analysis_type should be "Early_take", "Retrospective", or "Analysis"
-    date_str = datetime.datetime.now().strftime("%Y%m%d")
+    date_str = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M")
     sanitized_set_name = sanitize_filename(set_name)
     sanitized_type = sanitize_filename(analysis_type)
     return f"{date_str}_{sanitized_set_name}_{sanitized_type}.md"

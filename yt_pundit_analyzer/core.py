@@ -58,9 +58,6 @@ def analyze_video(
     if not transcript or transcript.startswith("Error fetching transcript"):
         error_msg = transcript if transcript else "Error: Transcript unavailable."
         logging.warning(f"Skipping {video_type} analysis for '{set_name}' due to: {error_msg}")
-        # Optionally save an error file
-        # filename = generate_output_filename(set_name, f"{video_type}_Error")
-        # save_output(output_folder, filename, error_msg)
         return error_msg
 
     logging.info(f"Analyzing {video_type} for '{set_name}'...")
@@ -87,9 +84,6 @@ def analyze_video(
     except Exception as e:
         logging.error(f"Error during {video_type} analysis LLM call for '{set_name}': {e}", exc_info=True)
         analysis_result = f"Error analyzing {video_type}: {e}"
-        # Optionally save an error file
-        # filename = generate_output_filename(set_name, f"{video_type}_Error")
-        # save_output(output_folder, filename, analysis_result)
 
     return analysis_result # Return the content (or error message)
 
@@ -106,9 +100,6 @@ def compare_analyses(
     if takeaways_early.startswith("Error:") or takeaways_retro.startswith("Error:"):
         error_msg = "Error: Cannot compare due to error in one or both preceding analyses."
         logging.warning(f"Skipping comparison for '{set_name}' due to previous errors.")
-        # Optionally save an error file
-        # filename = generate_output_filename(set_name, "Analysis_Error")
-        # save_output(output_folder, filename, error_msg)
         return error_msg
 
     logging.info(f"Comparing analyses for '{set_name}'...")
@@ -116,8 +107,8 @@ def compare_analyses(
     try:
         # Format the comparison prompt
         messages = compare_prompt_template.format_messages(
-            takeaways_a=takeaways_early,
-            takeaways_b=takeaways_retro,
+            takeaways_early=takeaways_early,
+            takeaways_retro=takeaways_retro,
             set_name=set_name
              # Ensure system_prompt_template_str was correctly embedded
         )
@@ -134,9 +125,6 @@ def compare_analyses(
     except Exception as e:
         logging.error(f"Error during comparison LLM call for '{set_name}': {e}", exc_info=True)
         comparison_result = f"Error comparing analyses: {e}"
-        # Optionally save an error file
-        # filename = generate_output_filename(set_name, "Analysis_Error")
-        # save_output(output_folder, filename, comparison_result)
 
     return comparison_result # Return the content (or error message)
 

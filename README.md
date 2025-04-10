@@ -1,10 +1,10 @@
 # YT-PUNDIT-ANALYZER: YouTube Video Comparison Tool for Analyzing Pundits
 
-> Vibe-coded 💻✨🎶 (Code: gemini-pro-2.5, Prompts: claude-sonnet-3.7)
+> Vibe-coded 💻✨🎶 (Code: gemini-2.5-pro, Prompts: claude-3.7-sonnet)
 
 `yt-pundit-analyzer` is a Python package that compares pair(s) of YouTube videos: a video with speculations/takes about the future, and an another video with the actual outcomes. Its purpose is to judge and evaluate the accuracy of pundit commentary. 
 
-It leverages LlamaIndex and Google's Gemini LLM (since Gemini Pro 2.5 is just fantastic).
+It leverages LlamaIndex and Google's Gemini LLM (since Gemini 2.5 Pro is just fantastic).
 
 Workflow:
 - Fetch transcripts from the pair of videos,

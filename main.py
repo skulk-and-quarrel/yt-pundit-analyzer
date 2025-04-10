@@ -147,15 +147,6 @@ def run_pundit_analyzer(config_path="config.yaml", cli_output_folder=None):
 
         # 4. Final Summary
         logging.info(f"--- Finished processing all submitted sets ({processed_count}/{total_tasks}) ---")
-        # Optional: Save the results_summary list to a file (e.g., summary.json or summary.yaml)
-        # import json
-        # summary_file = os.path.join(output_folder, "_summary_results.json")
-        # try:
-        #     with open(summary_file, 'w', encoding='utf-8') as f:
-        #         json.dump(results_summary, f, indent=2)
-        #     logging.info(f"Overall summary saved to: {summary_file}")
-        # except Exception as e:
-        #      logging.error(f"Failed to save summary file: {e}")
 
 
     except FileNotFoundError:

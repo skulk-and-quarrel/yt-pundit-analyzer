@@ -12,7 +12,8 @@ rate_limit_period: 60
 
 # --- LLM Configuration ---
 # See https://ai.google.dev/models/gemini for available models
-llm_model_name: "models/gemini-1.5-flash" # Or "models/gemini-pro", "models/gemini-1.5-pro-latest"
+# llm_model_name: "models/gemini-2.0-flash" # Use for test runs
+llm_model_name: "gemini-2.5-pro-exp-03-25" # Use for actual runs
 
 # --- Output Configuration ---
 output_folder: "analysis_results" # Folder where .md results will be saved
@@ -20,21 +21,47 @@ max_workers: 4 # Maximum number of parallel threads for processing sets
 
 # --- Prompt File Paths ---
 # Define specific prompts for each video type and comparison
-early_take_prompt_file: "prompts/early_take_prompt.txt"
-retrospective_prompt_file: "prompts/retrospective_prompt.txt"
-compare_prompt_file: "prompts/compare_takeaways_prompt.txt"
+early_take_prompt_file: "prompts/lol_early_take_prompt.txt"
+retrospective_prompt_file: "prompts/lol_retrospective_prompt.txt"
+compare_prompt_file: "prompts/lol_compare_takeaways_prompt.txt"
 
 # --- YouTube Video Sets to Process ---
 video_sets:
-  - set_name: "LlamaIndex Introduction" # Unique name for this pair/set
+  - set_name: "Aetherdrift"
     early_take:
-      url: "PASTE_EARLY_TAKE_YOUTUBE_URL_HERE"
-      # Optional: Override prompt for this specific video
-      # prompt_file: "prompts/custom_early_prompt.txt"
+      url: "https://www.youtube.com/watch?v=t9IsVW7tVxk"
     retrospective:
-      url: "PASTE_RETROSPECTIVE_YOUTUBE_URL_HERE"
-      # Optional: Override prompt
-      # prompt_file: "prompts/custom_retro_prompt.txt"
+      url: "https://www.youtube.com/watch?v=bsxvnoUBCnU"
+
+  - set_name: "Duskmourne"
+    early_take:
+      url: "https://www.youtube.com/watch?v=xIXJT44obzc"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=KttuUmEaBAc"
+
+  - set_name: "Bloomburrow"
+    early_take:
+      url: "https://www.youtube.com/watch?v=4AyJyfUh5q0"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=MEUlVv3Cr5U"
+
+  - set_name: "Modern Horizons 3"
+    early_take:
+      url: "https://www.youtube.com/watch?v=0Af5xhA0uWs"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=gK5Yy3-qQMs"
+
+  - set_name: "Outlaws of Thunder Junction"
+    early_take:
+      url: "https://www.youtube.com/watch?v=g8SUweU9oPc"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=AEGKjMHhIeg"
+
+  - set_name: "Murders at Karlov Manor"
+    early_take:
+      url: "https://www.youtube.com/watch?v=jhsGXPOTbBU"
+    retrospective:
+      url: "https://www.youtube.com/watch?v=mFajL8fdfhQ"
 
   # - set_name: "Another Example Set"
   #   early_take:
