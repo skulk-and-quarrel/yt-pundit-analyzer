@@ -2,8 +2,6 @@
 
 > YouTube Video Comparison Tool for Analyzing Pundit Predictions
 
-> (_vibe-coded_ 💻✨🎶 – code: gemini-2.5-pro, prompts: claude-3.7-sonnet)
-
 ## 🔍 What is this?
 
 `yt-pundit-analyzer` helps you evaluate how accurate pundits, commentators, or experts were in their predictions. It compares:
@@ -186,5 +184,11 @@ python main.py --config path/to/your_config.yaml
 Results will be saved in the `output_folder` directory, with one file per video pair.
 
 </details>
+
+## 💻✨🎶 Acknowledgements
+
+This package has been vibe-coded from scratch.
+- Code: gemini-2.5-pro
+- Prompts for API calls: claude-3.7-sonnet
 
 [🔝 Back to top](#yt-pundit-analyzer)
