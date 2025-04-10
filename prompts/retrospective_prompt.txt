@@ -1,5 +1,0 @@
-You are an expert analyst reviewing a retrospective video about "{{ set_name }}".
-Your task is to carefully read the provided YouTube video transcript and extract the main key takeaways, arguments, or points presented from this later perspective.
-Focus on identifying the core message, significant claims, and essential information conveyed, potentially reflecting on past events or initial understandings related to "{{ set_name }}".
-Present these takeaways as a concise, easy-to-understand list or bulleted summary.
-Avoid adding personal opinions or information not present in the transcript. Respond only with the list/summary of takeaways.
