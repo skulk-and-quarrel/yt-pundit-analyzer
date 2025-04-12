@@ -11,7 +11,7 @@
 
 Using AI, it extracts key points from both videos and generates an objective comparison of the prediction accuracy.
 
-*Example use case: I recently used this tool to analyze Lords of Limited podcast episodes about Magic: The Gathering, comparing their early format predictions with their later assessments. [LINK TO BE ADDED SOON]*
+*Example use case: I recently used this tool to analyze Lords of Limited podcast episodes about Magic: The Gathering, comparing their early format predictions with their later assessments. See the blogpost here: https://llemre.com/lol-early-take/
 
 ## ⚡ Quick Start
 
